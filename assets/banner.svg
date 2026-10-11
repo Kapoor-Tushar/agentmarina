@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" width="1280" height="360" role="img" aria-label="AgentMarina: coming soon">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06202F"/><stop offset="1" stop-color="#0E6A82"/></linearGradient></defs>
+  <rect width="1280" height="360" fill="url(#g)"/>
+  <path d="M0 322 q80 -30 160 0 t160 0 t160 0 t160 0 t160 0 t160 0 t160 0 t160 0 V360 H0 Z" fill="#0B3A5B" opacity="0.55"/>
+  <g transform="translate(90,72) scale(2.2)"><g><rect width="64" height="64" rx="15" fill="#0B3A5B"/>
+  <path d="M12 38 H52" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M19 38 V44 M32 38 V44 M45 38 V44" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M19 33 V19 L27 33 Z" fill="#14B8A6"/><path d="M32 33 V14 L40 33 Z" fill="#5EEAD4"/><path d="M45 33 V19 L53 33 Z" fill="#14B8A6"/>
+  <path d="M9 50 q5.75 -5 11.5 0 t11.5 0 t11.5 0 t11.5 0" fill="none" stroke="#5EEAD4" stroke-width="2.6" stroke-linecap="round"/></g></g>
+  <text x="260" y="150" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="84" font-weight="700" letter-spacing="-2" fill="#ffffff">Agent<tspan fill="#5EEAD4">Marina</tspan></text>
+  <text x="264" y="206" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="38" font-weight="600" fill="#CFFAFE">Dock any agent. Run it anywhere.</text>
+  <rect x="264" y="236" width="196" height="46" rx="23" fill="#14B8A6"/>
+  <text x="482" y="268" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" fill="#CFFAFE">Code goes public at 1,000 stars</text>
+  <text x="362" y="268" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="2" fill="#06202F">COMING SOON</text>
+</svg>
