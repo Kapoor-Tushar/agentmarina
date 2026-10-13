@@ -1,10 +1,12 @@
-![AgentMarina: Dock any agent. Run it anywhere. Coming soon.](assets/banner.svg)
+![AgentMarina: self-hosted AI agent runtime for Kubernetes, ECS, Cloud Run and Azure. Dock any agent. Run it anywhere.](assets/banner.svg)
 
-# AgentMarina: Dock any agent. Run it anywhere.
+# AgentMarina: Self-Hosted AI Agent Runtime
 
-### The self-hosted runtime for deploying AI agents. Framework-neutral, production-minded.
+## Deploy LangGraph, Google ADK, Strands, OpenAI Agents SDK, PydanticAI and CrewAI agents to production on your own cloud
 
-An open-source alternative to AWS AgentCore, Google Vertex AI Agent Engine and Azure AI Foundry Agent Service.  
+**AgentMarina** (Agent Marina) is a framework-neutral, self-hosted platform for deploying and scaling AI agents on Kubernetes, Amazon ECS, Google Cloud Run, Azure Container Apps and VMs. It adds sessions, multi-tenancy, MCP and A2A support, guardrails, OpenTelemetry tracing and evaluations around the agent you already have.
+
+A self-hosted alternative to AWS Bedrock AgentCore, Google Vertex AI Agent Engine and Azure AI Foundry Agent Service, with an open-source release planned.  
 Keep your framework. Keep your cloud. Keep your data.
 
 ![Status: coming soon](assets/badges/status.svg)![License: MIT](assets/badges/license.svg)

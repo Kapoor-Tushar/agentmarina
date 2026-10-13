@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kapoor-tushar.github.io/agentmarina/sitemap.xml

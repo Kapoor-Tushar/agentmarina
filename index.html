@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgentMarina: Self-Hosted AI Agent Runtime for Kubernetes, ECS and Cloud Run</title>
+<meta name="description" content="AgentMarina is a self-hosted, framework-neutral runtime for deploying AI agents (LangGraph, Google ADK, Strands, OpenAI Agents SDK, PydanticAI, CrewAI) with sessions, multi-tenancy, MCP, A2A, guardrails and tracing.">
+<link rel="canonical" href="https://kapoor-tushar.github.io/agentmarina/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#06202F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230B3A5B'/%3E%3Cpath d='M12 38H52' stroke='%23fff' stroke-width='3.5' stroke-linecap='round'/%3E%3Cpath d='M19 33V19L27 33Z' fill='%2314B8A6'/%3E%3Cpath d='M32 33V14L40 33Z' fill='%235EEAD4'/%3E%3Cpath d='M45 33V19L53 33Z' fill='%2314B8A6'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AgentMarina">
+<meta property="og:title" content="AgentMarina: Self-Hosted AI Agent Runtime">
+<meta property="og:description" content="Dock any agent. Run it anywhere. Deploy AI agents on Kubernetes, ECS, Cloud Run and Azure with your framework, your cloud and your data.">
+<meta property="og:url" content="https://kapoor-tushar.github.io/agentmarina/">
+<meta property="og:image" content="https://kapoor-tushar.github.io/agentmarina/assets/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AgentMarina: Self-Hosted AI Agent Runtime">
+<meta name="twitter:description" content="Dock any agent. Run it anywhere. Framework-neutral runtime for production AI agents.">
+<meta name="twitter:image" content="https://kapoor-tushar.github.io/agentmarina/assets/social-preview.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "AgentMarina",
+      "alternateName": "Agent Marina",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Linux, macOS",
+      "description": "Self-hosted, framework-neutral runtime for deploying and scaling AI agents on Kubernetes, Amazon ECS, Google Cloud Run, Azure Container Apps and virtual machines.",
+      "url": "https://kapoor-tushar.github.io/agentmarina/",
+      "sameAs": ["https://github.com/Kapoor-Tushar/agentmarina"],
+      "author": {"@type": "Person", "name": "Tushar Kapoor", "sameAs": ["https://www.linkedin.com/in/tushar-kapoor-6a0876124/"]},
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is AgentMarina?", "acceptedAnswer": {"@type": "Answer", "text": "AgentMarina is a self-hosted runtime that wraps the AI agent you already have and runs it as a governed, scalable service on your own infrastructure, with sessions, multi-tenancy, guardrails, observability and evaluations."}},
+        {"@type": "Question", "name": "Which AI agent frameworks does AgentMarina support?", "acceptedAnswer": {"@type": "Answer", "text": "Google ADK, LangGraph, Strands, OpenAI Agents SDK, PydanticAI, CrewAI and plain Python, plus any remote agent reachable over A2A, MCP, an OpenAI-compatible API or HTTP."}},
+        {"@type": "Question", "name": "Where can I run AgentMarina?", "acceptedAnswer": {"@type": "Answer", "text": "Kubernetes (EKS, GKE, AKS, k3s, kind, on-prem), Amazon ECS, Google Cloud Run, Azure Container Apps, and virtual machines or bare-metal servers."}},
+        {"@type": "Question", "name": "Is AgentMarina open source?", "acceptedAnswer": {"@type": "Answer", "text": "An MIT-licensed open-source release is planned when the GitHub repository reaches 1,000 stars."}},
+        {"@type": "Question", "name": "Does my data leave my infrastructure?", "acceptedAnswer": {"@type": "Answer", "text": "AgentMarina keeps its state in your own database and queue. Model calls go to the provider you configure, and guardrails can pseudonymize sensitive values before they reach it."}}
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+:root{--bg:#06202F;--bg2:#0B3A5B;--ink:#E6F7FA;--mute:#9CC7D1;--teal:#14B8A6;--mint:#5EEAD4;--card:#0a2d44;--line:#16506b}
+@media (prefers-color-scheme:light){:root{--bg:#F4FAFB;--bg2:#E1F1F4;--ink:#06202F;--mute:#3C6573;--card:#fff;--line:#BFDDE3}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Inter,"Segoe UI",Helvetica,Arial,sans-serif}
+a{color:var(--mint)}
+@media (prefers-color-scheme:light){a{color:#0E6A82}}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+header.hero{background:linear-gradient(135deg,#06202F,#0E6A82);color:#E6F7FA;padding:72px 0 64px}
+header.hero a{color:#5EEAD4}
+nav{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:48px;font-size:15px}
+nav a{text-decoration:none}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.1;margin:0 0 16px;letter-spacing:-1px}
+h1 span{color:#5EEAD4}
+.lead{font-size:clamp(18px,2.4vw,22px);max-width:760px;color:#CFFAFE;margin:0 0 28px}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;background:var(--teal);color:#06202F!important;font-weight:700;text-decoration:none;margin:0 10px 10px 0}
+.btn.alt{background:transparent;border:2px solid #5EEAD4;color:#5EEAD4!important}
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(26px,4vw,34px);margin:0 0 18px;letter-spacing:-.5px}
+h3{margin:0 0 6px;font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.card p{margin:0;color:var(--mute);font-size:15.5px}
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--bg2)}
+.tablewrap{overflow-x:auto}
+ol{padding-left:22px}
+li{margin:6px 0}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:10px 0}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--mute);margin:10px 0 0}
+.note{background:var(--bg2);border-left:4px solid var(--teal);padding:14px 18px;border-radius:8px}
+footer{padding:36px 0 60px;color:var(--mute);font-size:15px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav aria-label="Primary">
+      <a href="#problem">Problem</a><a href="#features">Features</a><a href="#platforms">Platforms</a><a href="#how">How it works</a><a href="#faq">FAQ</a><a href="#early-access">Early access</a>
+    </nav>
+    <h1>Agent<span>Marina</span>: the self-hosted AI agent runtime</h1>
+    <p class="lead">Dock any agent. Run it anywhere. Deploy LangGraph, Google ADK, Strands, OpenAI Agents SDK, PydanticAI and CrewAI agents to production on Kubernetes, Amazon ECS, Google Cloud Run, Azure Container Apps or plain VMs. Keep your framework, your cloud and your data.</p>
+    <a class="btn" href="https://github.com/Kapoor-Tushar/agentmarina">Star on GitHub</a>
+    <a class="btn alt" href="#early-access">Get early access</a>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+<section id="what">
+  <h2>What is AgentMarina?</h2>
+  <p><strong>AgentMarina</strong> is a framework-neutral, self-hosted platform that wraps the AI agent you already have and runs it as a governed, scalable service on your own infrastructure. It adds the parts a demo agent lacks: durable sessions, a queue, autoscaling, tenant isolation, guardrails, tracing and evaluations.</p>
+  <p>It is a self-hosted alternative to managed agent runtimes such as AWS Bedrock AgentCore, Google Vertex AI Agent Engine and Azure AI Foundry Agent Service, without tying your sessions, memory, identity and traces to one cloud.</p>
+  <p class="note">Status: built and tested, code private for now. An MIT-licensed open-source release is planned when the <a href="https://github.com/Kapoor-Tushar/agentmarina">GitHub repository</a> reaches 1,000 stars.</p>
+</section>
+
+<section id="problem">
+  <h2>Why running AI agents in production is hard</h2>
+  <p>A demo agent is a loop around a model. A production agent is a distributed system with an unusually hostile workload.</p>
+  <div class="grid">
+    <div class="card"><h3>State that outlives the process</h3><p>Per-turn checkpoints, restore on another host and exactly-once turns, so a crash or client retry never loses a conversation or runs a refund twice.</p></div>
+    <div class="card"><h3>Long, bursty, I/O-bound requests</h3><p>Turns last 2 to 60 seconds. You need session-aware routing, backpressure, fair queuing and autoscaling that never kills a host holding a live conversation.</p></div>
+    <div class="card"><h3>Isolation versus density</h3><p>Explicit isolation tiers and provable tenant separation across ids, caches, memory and logs.</p></div>
+    <div class="card"><h3>Sensitive data in the loop</h3><p>PII and secrets in prompts and tool results, including values split across streamed chunks.</p></div>
+    <div class="card"><h3>A new attack surface</h3><p>Prompt injection, poisoned tool descriptions, SSRF through URL-fetching tools and confused-deputy credentials.</p></div>
+    <div class="card"><h3>Observability, quality and supply chain</h3><p>One trace model across frameworks, a CI gate for quality regressions, and signed, scanned images.</p></div>
+  </div>
+</section>
+
+<section id="features">
+  <h2>What AgentMarina gives you</h2>
+  <div class="grid">
+    <div class="card"><h3>One agent, three protocols</h3><p>The same process and session answers plain HTTP, A2A (agent-to-agent) and MCP (Model Context Protocol).</p></div>
+    <div class="card"><h3>Bring any agent</h3><p>Google ADK, LangGraph, Strands, OpenAI Agents SDK, PydanticAI, CrewAI, plain Python, or a remote agent in any language. No rewrite.</p></div>
+    <div class="card"><h3>Sessions that scale</h3><p>Many conversations per host, sticky routing, a durable queue, scale-to-zero, canary rollouts and per-turn checkpoints.</p></div>
+    <div class="card"><h3>Multi-tenant by design</h3><p>Tenant isolation at every layer and per-tenant quotas. The tenant always comes from a verified credential.</p></div>
+    <div class="card"><h3>Memory you choose</h3><p>Short-term and long-term memory (facts, summaries, vectors, episodes, knowledge graph) on SQLite, Postgres or MongoDB.</p></div>
+    <div class="card"><h3>Tool and model gateway</h3><p>MCP servers, OpenAPI services, SQL and Lambda behind policy; model proxy with fallbacks, budgets, streaming and caching.</p></div>
+    <div class="card"><h3>Guardrails that do not break the agent</h3><p>PII and secret detection with reversible pseudonymization, prompt-injection checks and Cedar policy.</p></div>
+    <div class="card"><h3>OpenTelemetry observability</h3><p>A trace for every LLM and tool call in every framework, sent to the backend you already use.</p></div>
+    <div class="card"><h3>Evaluations and registry</h3><p>LLM judge with calibration, versioned datasets, a CI quality gate, and an approved catalog of agents, tools and models.</p></div>
+    <div class="card"><h3>Trusted supply chain</h3><p>Hardened image, vulnerability scan gate, Sigstore cosign signing and Kyverno admission control.</p></div>
+  </div>
+</section>
+
+<section id="how">
+  <h2>How it works</h2>
+  <ol>
+    <li><strong>Package.</strong> Add a small manifest next to your agent. AgentMarina builds a hardened, non-root image.</li>
+    <li><strong>Deploy.</strong> Render the deployment for your platform and apply it. A router fronts a pool of agent hosts that scale from zero.</li>
+    <li><strong>Call.</strong> Your app, an MCP client or another agent calls one endpoint. The router authenticates, keeps the conversation on the right host, queues under load and applies policy on the way in and out.</li>
+    <li><strong>Operate.</strong> Watch traces, run evaluations, roll out to a slice of traffic and roll back automatically if it misbehaves.</li>
+  </ol>
+</section>
+
+<section id="platforms">
+  <h2>Run AI agents on Kubernetes, ECS, Cloud Run, Azure and VMs</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Platform</th><th>Covers</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Kubernetes</td><td>Amazon EKS, Google GKE, Azure AKS, k3s, kind, on-prem</td><td>Verified on a real cluster (kind)</td></tr>
+      <tr><td>Amazon ECS</td><td>AWS Fargate and ECS on EC2</td><td>Verified against an AWS emulator</td></tr>
+      <tr><td>Google Cloud Run</td><td>Serverless containers</td><td>Implemented and unit-tested</td></tr>
+      <tr><td>Azure Container Apps</td><td>Serverless containers on Azure</td><td>Implemented and unit-tested</td></tr>
+      <tr><td>VMs and servers</td><td>EC2, Compute Engine, Azure VMs, bare metal</td><td>Rendered and unit-tested</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Integrates with PostgreSQL (pgvector), SQLite, MongoDB, RabbitMQ, Amazon SQS, Google Pub/Sub, Azure Service Bus, HashiCorp Vault, OIDC providers (Okta, Auth0, Entra ID, Keycloak) and any OpenTelemetry backend (Datadog, Grafana, Jaeger, Langfuse and more).</p>
+</section>
+
+<section id="compare">
+  <h2>AgentMarina compared with managed agent runtimes</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th></th><th>Managed runtimes</th><th>Framework alone</th><th>AgentMarina</th></tr></thead>
+    <tbody>
+      <tr><td>Runs on your infrastructure and cloud</td><td>No, one vendor</td><td>You build hosting</td><td>Yes</td></tr>
+      <tr><td>Keep your agent framework</td><td>Partly</td><td>Yes</td><td>Yes, six frameworks plus remote agents</td></tr>
+      <tr><td>HTTP, A2A and MCP at once</td><td>Varies</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Tenant isolation, PII pseudonymization, policy</td><td>Partly</td><td>No</td><td>Built in</td></tr>
+      <tr><td>Signed, scanned images</td><td>No</td><td>No</td><td>Built in</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><small>The managed-runtime column is a general characterisation, not a feature-by-feature audit.</small></p>
+</section>
+
+<section id="faq">
+  <h2>Frequently asked questions</h2>
+  <details><summary>What is AgentMarina?</summary><p>A self-hosted runtime that wraps the AI agent you already have and runs it as a governed, scalable service on your own infrastructure.</p></details>
+  <details><summary>Which agent frameworks are supported?</summary><p>Google ADK, LangGraph, Strands, OpenAI Agents SDK, PydanticAI, CrewAI and plain Python, plus any remote agent over A2A, MCP, an OpenAI-compatible API or HTTP.</p></details>
+  <details><summary>Where can I run it?</summary><p>Kubernetes (EKS, GKE, AKS, k3s, kind, on-prem), Amazon ECS, Google Cloud Run, Azure Container Apps, and VMs or bare metal.</p></details>
+  <details><summary>Is it open source?</summary><p>An MIT-licensed release is planned when the GitHub repository reaches 1,000 stars.</p></details>
+  <details><summary>How is this different from running my agent in a container?</summary><p>A container gives you a process. AgentMarina adds sessions across many hosts, queueing and autoscaling, tenant isolation, memory, guardrails, tracing, evaluations and a signed supply chain.</p></details>
+  <details><summary>Does my data leave my infrastructure?</summary><p>AgentMarina keeps its state in your database and queue. Model calls go to the provider you configure, and guardrails can pseudonymize sensitive values before they reach it.</p></details>
+</section>
+
+<section id="early-access" style="border-bottom:0">
+  <h2>Get early access</h2>
+  <p>We are looking for a small number of teams running, or about to run, AI agents in production. You get early builds, a direct line to the maintainer and a say in the roadmap.</p>
+  <p><a class="btn" href="https://www.linkedin.com/in/tushar-kapoor-6a0876124/">Contact Tushar Kapoor</a>
+     <a class="btn alt" href="https://github.com/Kapoor-Tushar/agentmarina">Star the repo</a></p>
+  <p>Tell us what you are building, which framework and cloud you use, and what is hardest about running agents today.</p>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">AgentMarina · Dock any agent. Run it anywhere. · <a href="https://github.com/Kapoor-Tushar/agentmarina">GitHub</a> · MIT license planned</div>
+</footer>
+
+</body>
+</html>
